@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/11 20:41:22 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/11 21:31:51 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "push_swap.h"
 
 int	ft_len(const char *str)
 {
@@ -60,25 +58,32 @@ int ft_num_of_args(char *str)
     
     i = 0;
     res = 0;
-		while(str[i])
+		while (str[i])
 		{
 			while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 				i++;
 			if (str[i] == '-' || str[i] == '+')
-				i++;
-			if(str[i] <= '9' && str[i] >= '0')
+			{
+				if(str[i + 1] <= '9' && str[i + 1] >= '0')
+					i++;
+				else{
+					write(2,"Invalid argument\n", 17);
+					return (-1);
+				}
+			}
+			if (str[i] <= '9' && str[i] >= '0')
 			{
 				res += 1;
 				i++;
 			}
-			else if(str[i] == 0)
+			else if (str[i] == 0)
 				break;
 			else
 			{
 				write(2,"Invalid argument\n", 17);
 				return (-1);
 			}
-			while(str[i] <= '9' && str[i] >= '0')
+			while (str[i] <= '9' && str[i] >= '0')
 				i++;
 		}
     return res;
@@ -153,4 +158,11 @@ int main(int ac, char **av)
 		printf("%d\n\n", array[i]);
 		i++;
 	}
+
+	/*if(!is_array_ordered(array))
+		printf("ARRAY NOT ORDERED");*/
+	
+	if(control_duplicates(array))
+		printf("NO DUPLICATES\n\n");
+
 }
