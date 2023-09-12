@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/11 21:31:51 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:10:41 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void init_stack_helper(int *array, char **av)
 			while ((av[i][j] >= 9 && av[i][j] <= 13) || av[i][j] == 32)
 				j++;
 			if (av[i][j] == '-' || av[i][j] == '+' || (av[i][j] <= '9' && av[i][j] >= '0'))
-			{						
+			{
 				array[arr_i] = ft_atoi(&av[i][j]);
 				j += ft_len(&av[i][j]);
 				arr_i++;
@@ -137,32 +137,41 @@ void init_stack_helper(int *array, char **av)
 	array[arr_i] = '\0';
 }
 
-int *init_stack(int (*f)(int, char**), int ac, char **av)
+void init_stack(t_stack *stack, int ac, char **av)
 {
-    int *array;
-    int i;
-
-    array = malloc(sizeof(int) * (f(ac, av) + 1));
-    i = 0;
-	init_stack_helper(array, av);
-    return (array);
+	if(!ac || !av || !av[1])
+	{
+		write(2, "'ERROR!' \n Incorrect argument input.", 36);
+		exit(1);
+	}
+	stack->stack_len = (ft_malloc_size(ac, av) + 1);
+    stack->stack_a = malloc(sizeof(int) * (stack->stack_len));
+	stack->stack_b = malloc(sizeof(int) * (stack->stack_len));
+	init_stack_helper(stack->stack_a, av);
+	if(check_args(stack->stack_a, stack->stack_len - 1) == -1)
+		exit(1);
+	stack->top_a = (stack->stack_len - 1);
+	stack->top_b = 0;
 }
+
 
 int main(int ac, char **av)
 {
-    int *array;
 	int i = 0;
-	array = init_stack(ft_malloc_size, ac, av);
-	while(array[i])
+	t_stack *stack;
+	stack = malloc(sizeof(t_stack));
+	init_stack(stack, ac, av);
+	
+	push_a(stack);
+	while(i < stack->top_a)
 	{
-		printf("%d\n\n", array[i]);
+		printf("A : %d\n", stack->stack_b[i]);
 		i++;
 	}
 
-	/*if(!is_array_ordered(array))
-		printf("ARRAY NOT ORDERED");*/
-	
-	if(control_duplicates(array))
-		printf("NO DUPLICATES\n\n");
-
+	while(i < stack->top_b)
+	{
+		printf("B : %d\n", stack->stack_b[i]);
+		i++;
+	}
 }

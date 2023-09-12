@@ -6,46 +6,58 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:55:47 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/11 21:30:09 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:49:23 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int is_array_ordered(int *array)
+int is_ordered(int *stack, int s_len)
 {
     int i;
     
     i = 0;
-    while (array[i + 1])
+    while ((i + 1) < s_len)
 	{
-		if(array[i + 1] < array[i])
+		if(stack[i + 1] < stack[i])
 			return(0);
 		i++;
 	}
-	write(1, "Given list is ordered already.\n", 31);
 	return(1);
 }
 
-int control_duplicates(int *array)
+int is_duplicate(int *stack, int s_len)
 {
 	int i;
 	int j;
 	
 	i = 0;
-	while (array[i])
+	while (i < s_len)
 	{
 		j = i + 1;
-		while (array[j])
+		while (j < s_len)
 		{
-			if (array[i] == array[j])
-			{
-				write(2, "'ERROR!' Duplicate number", 25);
-				return (0);
-			}
+			if (stack[i] == stack[j])
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
+}
+
+
+int check_args(int *stack, int s_len)
+{
+	if(is_duplicate(stack, s_len))
+	{
+		write(2, "'ERROR!' \n Given list has duplicate numbers.", 44);
+		return(-1);
+	}
+	if(is_ordered(stack, s_len))
+	{
+		write(2, "'ERROR!' \n Given list ordered already.", 38);
+		return(-1);
+	}
+	return(1);
 }
