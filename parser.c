@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/12 17:10:41 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/17 18:27:40 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,127 +51,85 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
-int ft_num_of_args(char *str)
+int	ft_num_of_args_helper(char *str)
 {
-    int i;
-    int res;
-    
-    i = 0;
-    res = 0;
-		while (str[i])
+	int	i;
+	int	res;
+
+	i = 0;
+	res = 0;
+	while (str[i])
+	{
+		while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+			i++;
+		if (str[i] == '-' || str[i] == '+')
 		{
-			while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+			if (str[i + 1] <= '9' && str[i + 1] >= '0')
 				i++;
-			if (str[i] == '-' || str[i] == '+')
-			{
-				if(str[i + 1] <= '9' && str[i + 1] >= '0')
-					i++;
-				else{
-					write(2,"Invalid argument\n", 17);
-					return (-1);
-				}
-			}
-			if (str[i] <= '9' && str[i] >= '0')
-			{
-				res += 1;
-				i++;
-			}
-			else if (str[i] == 0)
-				break;
 			else
 			{
-				write(2,"Invalid argument\n", 17);
+				write(2, "Invalid argument\n", 17);
 				return (-1);
 			}
-			while (str[i] <= '9' && str[i] >= '0')
-				i++;
 		}
-    return res;
+		if (str[i] <= '9' && str[i] >= '0')
+		{
+			res += 1;
+			i++;
+		}
+		else if (str[i] == 0)
+			break ;
+		else
+		{
+			write(2, "Invalid argument\n", 17);
+			return (-1);
+		}
+		while (str[i] <= '9' && str[i] >= '0')
+			i++;
+	}
+	return (res);
 }
 
-int ft_malloc_size(int ac, char **av)
+int	ft_num_of_args(int ac, char **av)
 {
-    int res;
-    int i;
-    int tmp_ac;
-    
-    res = 0;
-    i = 1;
-    tmp_ac = ac;
-    while(av[i])
-    {
-        if(ft_num_of_args(av[i]) != -1)
-        {
-            res += ft_num_of_args(av[i]);
-            i++;   
-        }else
-            return (-1);
-    }
-    return (res);
-}
+	int	res;
+	int	i;
+	int	tmp_ac;
 
-void init_stack_helper(int *array, char **av)
-{
-	int i;
-	int j;
-	int arr_i;
-	
+	res = 0;
 	i = 1;
-	arr_i = 0;
+	tmp_ac = ac;
 	while (av[i])
 	{
-		j = 0;
-		while(av[i][j])
+		if (ft_num_of_args_helper(av[i]) != -1)
 		{
-			while ((av[i][j] >= 9 && av[i][j] <= 13) || av[i][j] == 32)
-				j++;
-			if (av[i][j] == '-' || av[i][j] == '+' || (av[i][j] <= '9' && av[i][j] >= '0'))
-			{
-				array[arr_i] = ft_atoi(&av[i][j]);
-				j += ft_len(&av[i][j]);
-				arr_i++;
-			}
+			res += ft_num_of_args_helper(av[i]);
+			i++;
 		}
-		i++;
+		else
+			return (-1);
 	}
-	array[arr_i] = '\0';
+	return (res);
 }
-
-void init_stack(t_stack *stack, int ac, char **av)
-{
-	if(!ac || !av || !av[1])
-	{
-		write(2, "'ERROR!' \n Incorrect argument input.", 36);
-		exit(1);
-	}
-	stack->stack_len = (ft_malloc_size(ac, av) + 1);
-    stack->stack_a = malloc(sizeof(int) * (stack->stack_len));
-	stack->stack_b = malloc(sizeof(int) * (stack->stack_len));
-	init_stack_helper(stack->stack_a, av);
-	if(check_args(stack->stack_a, stack->stack_len - 1) == -1)
-		exit(1);
-	stack->top_a = (stack->stack_len - 1);
-	stack->top_b = 0;
-}
-
 
 int main(int ac, char **av)
 {
-	int i = 0;
+	int i;
 	t_stack *stack;
 	stack = malloc(sizeof(t_stack));
 	init_stack(stack, ac, av);
-	
-	push_a(stack);
-	while(i < stack->top_a)
+	i = stack->top_a;
+	while (i >= 0)
 	{
-		printf("A : %d\n", stack->stack_b[i]);
-		i++;
+		printf("A : %d\n", stack->stack_a[i]);
+		i--;
 	}
-
-	while(i < stack->top_b)
+	reverse_rotate_a(stack);
+	printf("AFTER ROTATE \n\n");
+	i = stack->top_a;
+	while (i >= 0)
 	{
-		printf("B : %d\n", stack->stack_b[i]);
-		i++;
+		printf("A : %d\n", stack->stack_a[i]);
+		i--;
 	}
 }

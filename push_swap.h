@@ -6,16 +6,16 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:51 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/12 17:01:48 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/17 18:15:21 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_stack
 {
@@ -28,8 +28,8 @@ typedef struct s_stack
 
 int		ft_len(const char *str);
 int		ft_atoi(const char *str);
-int		ft_num_of_args(char *str);
-int		ft_malloc_size(int ac, char **av);
+int		ft_num_of_args_helper(char *str);
+int		ft_num_of_args(int ac, char **av);
 void	init_stack_helper(int *array, char **av);
 void	init_stack(t_stack *stack, int ac, char **av);
 int		is_ordered(int *stack, int arr_len);
