@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/17 18:27:40 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/18 20:23:32 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,15 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i] - 48) * neg;
-		if (res > 2147483647)
+		if (res > 2147483647 || res < -2147483648)
 			return (-1);
-		if (res < -2147483648)
-			return (0);
 		i++;
 	}
 	return (res);
 }
 
-int	ft_num_of_args_helper(char *str)
+int ft_norm(char *str, int i, int res)
 {
-	int	i;
-	int	res;
-
-	i = 0;
-	res = 0;
 	while (str[i])
 	{
 		while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
@@ -67,10 +60,7 @@ int	ft_num_of_args_helper(char *str)
 			if (str[i + 1] <= '9' && str[i + 1] >= '0')
 				i++;
 			else
-			{
-				write(2, "Invalid argument\n", 17);
 				return (-1);
-			}
 		}
 		if (str[i] <= '9' && str[i] >= '0')
 		{
@@ -80,14 +70,20 @@ int	ft_num_of_args_helper(char *str)
 		else if (str[i] == 0)
 			break ;
 		else
-		{
-			write(2, "Invalid argument\n", 17);
 			return (-1);
-		}
 		while (str[i] <= '9' && str[i] >= '0')
 			i++;
 	}
 	return (res);
+}
+int	ft_num_of_args_helper(char *str)
+{
+	int	i;
+	int	res;
+
+	i = 0;
+	res = 0;
+	return (ft_norm(str, i, res));
 }
 
 int	ft_num_of_args(int ac, char **av)
@@ -112,7 +108,7 @@ int	ft_num_of_args(int ac, char **av)
 	return (res);
 }
 
-int main(int ac, char **av)
+/*int main(int ac, char **av)
 {
 	int i;
 	t_stack *stack;
@@ -132,4 +128,4 @@ int main(int ac, char **av)
 		printf("A : %d\n", stack->stack_a[i]);
 		i--;
 	}
-}
+}*/

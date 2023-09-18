@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:10:35 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/17 18:12:42 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:53:16 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,11 @@ void	reverse_rotate_b(t_stack *stack)
 	}
 	stack->stack_b[stack->top_b] = tmp;
 	write(1, "rrb\n", 4);
+}
+
+void	rrr(t_stack *stack)
+{
+	reverse_rotate_a(stack);
+	reverse_rotate_b(stack);
+	write(1, "rrr\n", 4);
 }

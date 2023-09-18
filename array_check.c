@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:55:47 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/17 18:32:30 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:47:26 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	is_ordered(int *stack, int s_len)
 	while ((i + 1) < s_len)
 	{
 		if (stack[i + 1] < stack[i])
-			return (0);
+			return (1);
 		i++;
 	}
-	return (1);
+	return (-1);
 }
 
 int	is_duplicate(int *stack, int s_len)
@@ -38,24 +38,33 @@ int	is_duplicate(int *stack, int s_len)
 		while (j < s_len)
 		{
 			if (stack[i] == stack[j])
-				return (1);
+				return (-1);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (1);
+}
+
+void free_stack_exit(t_stack *stack)
+{
+	free(stack->stack_a);
+	free(stack->stack_b);
+	free(stack);
+	system("leaks a.out");
+	exit(1);
 }
 
 int	check_args(int *stack, int s_len)
 {
-	if (is_duplicate(stack, s_len))
+	if (is_duplicate(stack, s_len) == -1)
 	{
-		write(2, "'ERROR!' \n Given list has duplicate numbers.", 44);
+		write(2, "'ERROR!' \n Given list has duplicate numbers.\n", 45);
 		return (-1);
 	}
-	if (is_ordered(stack, s_len))
+	if (is_ordered(stack, s_len) == -1)
 	{
-		write(2, "'ERROR!' \n Given list ordered already.", 38);
+		write(2, "'ERROR!' \n Given list ordered already.\n", 39);
 		return (-1);
 	}
 	return (1);
