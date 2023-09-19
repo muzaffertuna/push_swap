@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:55:14 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/17 18:12:36 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/19 19:32:48 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,18 @@ void	ss(t_stack *stack)
 
 void	push_a(t_stack *stack)
 {
-	if (stack->stack_b && stack->stack_b[0])
+	if (stack->stack_b)
 	{
 		stack->stack_a[++stack->top_a] = stack->stack_b[stack->top_b];
 		stack->stack_b[stack->top_b] = 0;
 		stack->top_b--;
 		write(1, "pa\n", 3);
 	}
-	else
-	{
-		exit(1);
-	}
 }
 
 void	push_b(t_stack *stack)
 {
-	if (stack->stack_a && stack->stack_a[0])
+	if (stack->stack_a)
 	{
 		stack->stack_b[++stack->top_b] = stack->stack_a[stack->top_a];
 		stack->stack_a[stack->top_a] = 0;

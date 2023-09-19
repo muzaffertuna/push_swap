@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "sstream": "c",
-        "__tuple": "c",
-        "array": "c",
-        "push_swap.h": "c"
-    }
-}

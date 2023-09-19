@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:51 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/18 15:59:33 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/19 19:51:47 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	rrr(t_stack *stack);
 void	free_stack_exit(t_stack *stack);
 void	sort_array(int *stack, int s_len);
 int		*get_stack(int *stack, int s_len);
-void	indexing_stack(int *stack, int *array, int s_len);
+void	indexing_stack(int *stack, int s_len);
+int		get_max_digit(int *stack, int size);
+void	radix(t_stack *stack);
+int		isEmpty(int top);
 
 #endif

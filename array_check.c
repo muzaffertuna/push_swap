@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:55:47 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/18 15:47:26 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/19 21:03:27 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void free_stack_exit(t_stack *stack)
 	free(stack->stack_a);
 	free(stack->stack_b);
 	free(stack);
-	system("leaks a.out");
 	exit(1);
 }
 

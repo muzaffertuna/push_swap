@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:18:20 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/18 15:59:18 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/09/19 21:25:40 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,26 @@ void	sort_array(int *stack, int s_len)
 	int	tmp;
 
 	i = 0;
-	while (stack[i] < (s_len - 1))
+	while (stack[i] < (s_len + 1))
 	{
 		j = i + 1;
-		while (stack[j] < (s_len - 1))
+		while (stack[j] < (s_len + 1))
 		{
 			if (stack[i] > stack[j])
 			{
 				tmp = stack[i];
 				stack[i] = stack[j];
 				stack[j] = tmp;
+				// böyle saçma şey mi olur niye patlıyor 
 			}
 			j++;
 		}
+		i++;
+	}
+	i = 0;
+	while (i < s_len)
+	{
+		printf("hadi be : %d\n", stack[i]);
 		i++;
 	}
 }
@@ -41,9 +48,9 @@ int	*get_stack(int *stack, int s_len)
 	int	*array;
 	int	i;
 
-	array = malloc(sizeof(int) * s_len);
+	array = malloc(sizeof(int) * (s_len + 1));
 	i = 0;
-	while (i < (s_len - 1))
+	while (i < (s_len + 1))
 	{
 		array[i] = stack[i];
 		i++;
@@ -53,16 +60,24 @@ int	*get_stack(int *stack, int s_len)
 	return (array);
 }
 
-void	indexing_stack(int *stack, int *array, int s_len)
+void	indexing_stack(int *stack, int s_len)
 {
 	int	i;
 	int	j;
+	int *array;
 
 	i = 0;
+	array = get_stack(stack, s_len);
 	while (i < s_len)
 	{
+		printf("get stack : %d\n", array[i]);
+		i++;
+	}
+	i = 0;
+	while (i < (s_len + 1))
+	{
 		j = 0;
-		while (j < s_len)
+		while (j < (s_len + 1))
 		{
 			if (array[j] == stack[i])
 			{
@@ -73,4 +88,62 @@ void	indexing_stack(int *stack, int *array, int s_len)
 		}
 		i++;
 	}
+	free(array);
 }
+
+int get_max_digit(int *stack, int size)
+{
+	int max_num;
+	int max_digit;
+	int i;
+	
+	max_num = stack[0];
+	max_digit = 0;
+	i = 0;
+	while (i < size)
+	{
+		if(stack[i] > max_num)
+			max_num = stack[i];
+		i++;
+	}
+	while (max_num > 0)
+	{
+		max_num >>= 1;
+		max_digit++;
+	}
+	return(max_digit);
+}
+int isEmpty(int top)
+{
+	return (top == -1);
+}
+
+void radix(t_stack *stack)
+{
+	int i;
+	int j;
+	int max_digit;
+
+	i = 0;
+	max_digit = get_max_digit(stack->stack_a, stack->stack_len);
+	while (i < max_digit)
+	{
+		j = 0;
+		while (j < stack->stack_len)
+		{
+			if(stack->stack_a[j] >> i & 1)
+				rotate_a(stack);
+			else
+				push_b(stack);
+			j++;
+		}
+		while (!isEmpty(stack->top_b))
+		{
+			push_a(stack);
+			printf("KESİN SORUN BURDA \n\n");
+		}
+		i++;
+	}
+}
+	
+
