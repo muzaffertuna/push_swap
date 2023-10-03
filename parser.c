@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/19 21:25:04 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:59:32 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,31 +110,24 @@ int	ft_num_of_args(int ac, char **av)
 
 int main(int ac, char **av)
 {
-	/*int i;
+	int i;
 	t_stack *stack;
 	stack = malloc(sizeof(t_stack));
 	init_stack(stack, ac, av);
 	i = stack->top_a;
 	while (i >= 0)
 	{
-		printf("A : %d\n", stack->stack_a[i]);
+		printf("A first : %d\n", stack->stack_a[i]);
 		i--;
 	}
 	int *array = get_stack(stack->stack_a, stack->stack_len);
-	i = 0;
-	while(i < stack->stack_len)
-	{
-		printf("array : %d\n", array[i]);
-		i++;
-	}
-	printf("AFTER index \n\n");*/
-	/*i = stack->top_a;
+	sort_array(array, stack->stack_len);
+	indexing_stack(stack->stack_a, stack->stack_len);
+	radix(stack);
+	i = stack->top_a;
 	while (i >= 0)
 	{
-		printf("A NEW : %d\n", stack->top_a);
+		printf("A last: %d\n", stack->stack_a[i]);
 		i--;
-	}*/
-
-	int array[] = {-1 ,5, 4, 3, 2, 1};
-	sort_array(array, 6);
+	}
 }

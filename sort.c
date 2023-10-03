@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:18:20 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/09/19 21:25:40 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:49:54 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,19 @@ void	sort_array(int *stack, int s_len)
 	int	tmp;
 
 	i = 0;
-	while (stack[i] < (s_len + 1))
+	while (i < (s_len))
 	{
 		j = i + 1;
-		while (stack[j] < (s_len + 1))
+		while (j < (s_len))
 		{
 			if (stack[i] > stack[j])
 			{
 				tmp = stack[i];
 				stack[i] = stack[j];
 				stack[j] = tmp;
-				// böyle saçma şey mi olur niye patlıyor 
 			}
 			j++;
 		}
-		i++;
-	}
-	i = 0;
-	while (i < s_len)
-	{
-		printf("hadi be : %d\n", stack[i]);
 		i++;
 	}
 }
@@ -111,8 +104,9 @@ int get_max_digit(int *stack, int size)
 		max_num >>= 1;
 		max_digit++;
 	}
-	return(max_digit);
+	return (max_digit);
 }
+
 int isEmpty(int top)
 {
 	return (top == -1);
@@ -138,10 +132,7 @@ void radix(t_stack *stack)
 			j++;
 		}
 		while (!isEmpty(stack->top_b))
-		{
 			push_a(stack);
-			printf("KESİN SORUN BURDA \n\n");
-		}
 		i++;
 	}
 }
