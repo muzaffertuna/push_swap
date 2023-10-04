@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:51 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/03 15:50:01 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/04 18:11:05 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,9 @@ void	indexing_stack(int *stack, int s_len);
 int		get_max_digit(int *stack, int size);
 void	radix(t_stack *stack);
 int		isEmpty(int top);
+void	two_argument_sort(t_stack *stack);
+void	three_argument_sort(t_stack *stack);
+void	four_argument_sort(t_stack *stack);
+void	five_argument_sort(t_stack *stack);
 
 #endif

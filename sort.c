@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:18:20 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/03 15:49:54 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/04 18:11:03 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int get_max_digit(int *stack, int size)
 	int max_num;
 	int max_digit;
 	int i;
-	
+
 	max_num = stack[0];
 	max_digit = 0;
 	i = 0;
@@ -136,5 +136,3 @@ void radix(t_stack *stack)
 		i++;
 	}
 }
-	
-
