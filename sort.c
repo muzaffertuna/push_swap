@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:18:20 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/04 18:11:03 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 00:00:00 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,6 @@ void	indexing_stack(int *stack, int s_len)
 
 	i = 0;
 	array = get_stack(stack, s_len);
-	while (i < s_len)
-	{
-		printf("get stack : %d\n", array[i]);
-		i++;
-	}
-	i = 0;
 	while (i < (s_len + 1))
 	{
 		j = 0;

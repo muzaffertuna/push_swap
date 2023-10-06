@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:51 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/04 18:11:05 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/06 22:53:49 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ void	two_argument_sort(t_stack *stack);
 void	three_argument_sort(t_stack *stack);
 void	four_argument_sort(t_stack *stack);
 void	five_argument_sort(t_stack *stack);
+void	manual_sort(t_stack *stack, int ac);
+void	manual_pa(t_stack *stack);
 
 #endif

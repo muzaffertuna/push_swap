@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   array_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:55:47 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/04 18:11:33 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 02:01:39 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_ordered(int *stack, int s_len)
 	i = 0;
 	while ((i + 1) < s_len)
 	{
-		if (stack[i + 1] < stack[i])
+		if (stack[i + 1] > stack[i])
 			return (1);
 		i++;
 	}
@@ -56,14 +56,9 @@ void free_stack_exit(t_stack *stack)
 
 int	check_args(int *stack, int s_len)
 {
-	if (is_duplicate(stack, s_len) == -1)
+	if (is_duplicate(stack, s_len) == -1 || is_ordered(stack, s_len) == -1)
 	{
-		write(2, "'ERROR!' \n Given list has duplicate numbers.\n", 45);
-		return (-1);
-	}
-	if (is_ordered(stack, s_len) == -1)
-	{
-		write(2, "'ERROR!' \n Given list ordered already.\n", 39);
+		write(2, "Error\n", 6);
 		return (-1);
 	}
 	return (1);

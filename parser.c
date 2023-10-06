@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtoktas <mtoktas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/04 18:11:08 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 02:11:44 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,15 @@ int ft_norm(char *str, int i, int res)
 			i++;
 		if (str[i] == '-' || str[i] == '+')
 		{
+			if (str[i - 1] <= '9' && str[i - 1] >= '0')
+				return (-1);
 			if (str[i + 1] <= '9' && str[i + 1] >= '0')
 				i++;
 			else
 				return (-1);
 		}
-		if (str[i] <= '9' && str[i] >= '0')
-		{
+		if (str[i++] <= '9' && str[i-1] >= '0')
 			res += 1;
-			i++;
-		}
 		else if (str[i] == 0)
 			break ;
 		else
@@ -108,26 +107,4 @@ int	ft_num_of_args(int ac, char **av)
 	return (res);
 }
 
-int main(int ac, char **av)
-{
-	int i;
-	t_stack *stack;
-	stack = malloc(sizeof(t_stack));
-	init_stack(stack, ac, av);
-	i = stack->top_a;
-	while (i >= 0)
-	{
-		printf("A first : %d\n", stack->stack_a[i]);
-		i--;
-	}
-	int *array = get_stack(stack->stack_a, stack->stack_len);
-	sort_array(array, stack->stack_len);
-	indexing_stack(stack->stack_a, stack->stack_len);
-	radix(stack);
-	i = stack->top_a;
-	while (i >= 0)
-	{
-		printf("A last: %d\n", stack->stack_a[i]);
-		i--;
-	}
-}
+
