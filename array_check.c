@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:55:47 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 02:01:39 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:07:48 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	is_duplicate(int *stack, int s_len)
 	return (1);
 }
 
-void free_stack_exit(t_stack *stack)
+void	free_stack_exit(t_stack *stack)
 {
 	free(stack->stack_a);
 	free(stack->stack_b);
@@ -62,4 +62,11 @@ int	check_args(int *stack, int s_len)
 		return (-1);
 	}
 	return (1);
+}
+
+void	rrr(t_stack *stack)
+{
+	reverse_rotate_a(stack);
+	reverse_rotate_b(stack);
+	write(1, "rrr\n", 4);
 }

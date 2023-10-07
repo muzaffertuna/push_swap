@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:18:20 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 00:00:00 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:06:41 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	indexing_stack(int *stack, int s_len)
 {
 	int	i;
 	int	j;
-	int *array;
+	int	*array;
 
 	i = 0;
 	array = get_stack(stack, s_len);
@@ -78,18 +78,18 @@ void	indexing_stack(int *stack, int s_len)
 	free(array);
 }
 
-int get_max_digit(int *stack, int size)
+int	get_max_digit(int *stack, int size)
 {
-	int max_num;
-	int max_digit;
-	int i;
+	int	max_num;
+	int	max_digit;
+	int	i;
 
 	max_num = stack[0];
 	max_digit = 0;
 	i = 0;
 	while (i < size)
 	{
-		if(stack[i] > max_num)
+		if (stack[i] > max_num)
 			max_num = stack[i];
 		i++;
 	}
@@ -101,32 +101,28 @@ int get_max_digit(int *stack, int size)
 	return (max_digit);
 }
 
-int isEmpty(int top)
+void	radix(t_stack *stack)
 {
-	return (top == -1);
-}
-
-void radix(t_stack *stack)
-{
-	int i;
-	int j;
-	int max_digit;
+	int	i;
+	int	j;
+	int	max_digit;
 
 	i = 0;
 	max_digit = get_max_digit(stack->stack_a, stack->stack_len);
 	while (i < max_digit)
 	{
-		j = 0;
-		while (j < stack->stack_len)
+		j = stack->stack_len;
+		while (j > 0)
 		{
-			if(stack->stack_a[j] >> i & 1)
+			if ((stack->stack_a[stack->top_a] >> i) & 1)
 				rotate_a(stack);
 			else
 				push_b(stack);
-			j++;
+			j--;
 		}
-		while (!isEmpty(stack->top_b))
+		while (stack->top_b != -1)
 			push_a(stack);
 		i++;
 	}
+	free_stack_exit(stack);
 }

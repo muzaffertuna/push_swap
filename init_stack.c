@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:27:03 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 02:02:51 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:12:45 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_stack_helper(int *array, char **av)
 	array[arr_i] = '\0';
 }
 
-void add_a(t_stack *stack)
+void	add_a(t_stack *stack)
 {
 	int	i;
 
@@ -73,6 +73,4 @@ void	init_stack(t_stack *stack, int ac, char **av)
 	add_a(stack);
 	if (check_args(stack->stack_a, stack->stack_len) == -1)
 		free_stack_exit(stack);
-	
-	
 }

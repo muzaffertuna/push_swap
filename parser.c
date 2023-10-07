@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 02:11:44 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:03:05 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
-int ft_norm(char *str, int i, int res)
+int	ft_norm(char *str, int i, int res)
 {
 	while (str[i])
 	{
@@ -64,7 +64,7 @@ int ft_norm(char *str, int i, int res)
 			else
 				return (-1);
 		}
-		if (str[i++] <= '9' && str[i-1] >= '0')
+		if (str[i++] <= '9' && str[i - 1] >= '0')
 			res += 1;
 		else if (str[i] == 0)
 			break ;
@@ -75,6 +75,7 @@ int ft_norm(char *str, int i, int res)
 	}
 	return (res);
 }
+
 int	ft_num_of_args_helper(char *str)
 {
 	int	i;
@@ -106,5 +107,3 @@ int	ft_num_of_args(int ac, char **av)
 	}
 	return (res);
 }
-
-
