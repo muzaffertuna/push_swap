@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:55:47 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 12:57:13 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 13:09:50 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	free_stack_exit(t_stack *stack)
 	free(stack->stack_a);
 	free(stack->stack_b);
 	free(stack);
-	exit(1);
+	exit(0);
 }
 
 int	check_args(int *stack, int s_len)

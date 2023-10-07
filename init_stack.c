@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:27:03 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 12:59:00 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 13:05:14 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	init_stack(t_stack *stack, int ac, char **av)
 	if (!ac || !av || !av[1])
 	{
 		write(2, "Error\n", 6);
-		exit(1);
+		exit(0);
 	}
 	if (ft_num_of_args(ac, av) == -1)
 	{
 		write(2, "Error\n", 6);
-		exit(1);
+		exit(0);
 	}
 	stack->stack_len = (ft_num_of_args(ac, av));
 	stack->stack_a = malloc(sizeof(int) * (stack->stack_len + 1));
