@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:55:47 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 12:36:27 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:57:13 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	is_duplicate(int *stack, int s_len)
 		while (j < s_len)
 		{
 			if (stack[i] == stack[j])
+			{
+				write(2, "Error\n", 6);
 				return (-1);
+			}
 			j++;
 		}
 		i++;
@@ -57,10 +60,7 @@ void	free_stack_exit(t_stack *stack)
 int	check_args(int *stack, int s_len)
 {
 	if (is_duplicate(stack, s_len) == -1 || is_ordered(stack, s_len) == -1)
-	{
-		write(2, "Error\n", 6);
 		return (-1);
-	}
 	return (1);
 }
 
