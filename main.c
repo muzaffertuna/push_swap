@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 23:05:49 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 11:12:29 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:31:22 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int ac, char **av)
 {
-	int		i;
 	t_stack	*stack;
 
 	stack = malloc(sizeof(t_stack));

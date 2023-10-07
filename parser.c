@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:53 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 12:03:05 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:33:21 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_len(const char *str)
 	return (len);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, t_stack *stack)
 {
 	int		i;
 	int		neg;
@@ -43,7 +43,10 @@ int	ft_atoi(const char *str)
 	{
 		res = res * 10 + (str[i] - 48) * neg;
 		if (res > 2147483647 || res < -2147483648)
-			return (-1);
+		{
+			write(2, "Error\n", 6);
+			free_stack_exit(stack);
+		}
 		i++;
 	}
 	return (res);

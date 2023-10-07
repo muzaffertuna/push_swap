@@ -6,7 +6,7 @@
 /*   By: mtoktas <mtoktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:37:51 by mtoktas           #+#    #+#             */
-/*   Updated: 2023/10/07 12:06:38 by mtoktas          ###   ########.fr       */
+/*   Updated: 2023/10/07 12:35:39 by mtoktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef struct s_stack
 }	t_stack;
 
 int		ft_len(const char *str);
-int		ft_atoi(const char *str);
+int		ft_atoi(const char *str, t_stack *stack);
 int		ft_num_of_args_helper(char *str);
 int		ft_num_of_args(int ac, char **av);
-void	init_stack_helper(int *array, char **av);
+void	init_stack_helper(t_stack *stack, char **av);
 void	init_stack(t_stack *stack, int ac, char **av);
 int		is_ordered(int *stack, int arr_len);
 int		is_duplicate(int *stack, int arr_len);
@@ -58,6 +58,7 @@ void	four_argument_sort(t_stack *stack);
 void	five_argument_sort(t_stack *stack);
 void	manual_sort(t_stack *stack, int ac);
 void	manual_pa(t_stack *stack);
+void	add_a(t_stack *stack);
 int		find_max_index(t_stack *stack);
 int		find_min_index(t_stack *stack);
 
